@@ -7,8 +7,7 @@ return [
      * All of your function classes that you'd like to deploy go here.
      */
     'functions' => [
-        // \App\Sidecar\RenderOgImage::class,
-        // \App\Sidecar\ProcessThumbnail::class,
+        \App\Sidecar\Scraper::class,
     ],
 
     /*

@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['prefix' => 'recipes'], function () {
+    Route::get('import', function () {
+        return \App\Sidecar\Scraper::execute(['url' => request()->input('url')]);
+    });
+});
