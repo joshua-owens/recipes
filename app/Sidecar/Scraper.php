@@ -8,7 +8,6 @@ use Hammerstone\Sidecar\Runtime;
 
 class Scraper extends LambdaFunction
 {
-
     public function handler()
     {
         return 'index@handler';
