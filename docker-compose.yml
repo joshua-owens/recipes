@@ -1,0 +1,23 @@
+version: '3'
+services:
+  go-recipes:
+    build:
+      context: .
+      dockerfile: cmd/recipes/Dockerfile
+    volumes:
+      - ./cmd/recipes:/app
+    command: go run main.go
+  go-web:
+    build:
+      context: .
+      dockerfile: cmd/web/Dockerfile
+    volumes:
+      - ./cmd/web:/app
+    command: go run main.go
+  python-scraper:
+    build:
+      context: .
+      dockerfile: cmd/scraper/Dockerfile
+    volumes:
+      - ./cmd/scraper:/app
+    command: python index.py
