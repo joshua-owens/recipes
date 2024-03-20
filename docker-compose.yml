@@ -1,12 +1,5 @@
 version: '3'
 services:
-  go-recipes:
-    build:
-      context: .
-      dockerfile: cmd/recipes/Dockerfile
-    volumes:
-      - ./cmd/recipes:/app
-    command: go run main.go
   go-web:
     build:
       context: .
