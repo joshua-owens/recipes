@@ -6,6 +6,8 @@ services:
       dockerfile: cmd/web/Dockerfile
     volumes:
       - ./cmd/web:/app
+    ports:
+      - "8080:8080"
     command: go run main.go
   python-scraper:
     build:
