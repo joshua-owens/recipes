@@ -14,10 +14,9 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.GET("/", hello)
-
 	e.Logger.Fatal(e.Start(":8080"))
 }
 
 func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+	return c.String(http.StatusOK, "Hello, Chef!")
 }
