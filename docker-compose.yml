@@ -15,3 +15,15 @@ services:
     volumes:
       - ./cmd/scraper:/app
     command: python index.py
+  db:
+    image: postgres:latest
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres 
+      POSTGRES_DB: recipes
+    ports:
+      - "5432:5432"
+volumes:
+  db_data:
