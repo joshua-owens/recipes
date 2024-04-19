@@ -17,7 +17,7 @@ INSERT INTO recipes (
 ) VALUES (
     $1, $2, $3
 )
-RETURNING id, name, ingredients, instructions
+RETURNING id, name, ingredients, instructions, created_at, updated_at
 `
 
 type CreateRecipeParams struct {
@@ -34,6 +34,8 @@ func (q *Queries) CreateRecipe(ctx context.Context, arg CreateRecipeParams) (Rec
 		&i.Name,
 		&i.Ingredients,
 		&i.Instructions,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }
@@ -49,7 +51,7 @@ func (q *Queries) DeleteRecipe(ctx context.Context, id int64) error {
 }
 
 const getRecipe = `-- name: GetRecipe :one
-SELECT id, name, ingredients, instructions FROM recipes
+SELECT id, name, ingredients, instructions, created_at, updated_at FROM recipes
 WHERE id = $1 LIMIT 1
 `
 
@@ -61,12 +63,14 @@ func (q *Queries) GetRecipe(ctx context.Context, id int64) (Recipe, error) {
 		&i.Name,
 		&i.Ingredients,
 		&i.Instructions,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }
 
 const listRecipes = `-- name: ListRecipes :many
-SELECT id, name, ingredients, instructions FROM recipes
+SELECT id, name, ingredients, instructions, created_at, updated_at FROM recipes
 ORDER BY name
 `
 
@@ -84,6 +88,8 @@ func (q *Queries) ListRecipes(ctx context.Context) ([]Recipe, error) {
 			&i.Name,
 			&i.Ingredients,
 			&i.Instructions,
+			&i.CreatedAt,
+			&i.UpdatedAt,
 		); err != nil {
 			return nil, err
 		}

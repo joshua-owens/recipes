@@ -13,4 +13,6 @@ type Recipe struct {
 	Name         string
 	Ingredients  []byte
 	Instructions pgtype.Text
+	CreatedAt    pgtype.Timestamptz
+	UpdatedAt    pgtype.Timestamptz
 }
