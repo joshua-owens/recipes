@@ -22,6 +22,10 @@ func newTemplate() *Templates {
 	}
 }
 
+type Page struct {
+	Title string
+}
+
 func main() {
 	e := echo.New()
 
@@ -31,7 +35,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.GET("/", func(c echo.Context) error {
-		return c.Render(200, "index.html", "World")
+		return c.Render(200, "index.html", Page{Title: "Hello, Chef"})
 	})
 
 	e.Logger.Fatal(e.Start(":8080"))
