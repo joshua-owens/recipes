@@ -174,3 +174,5 @@ cython_debug/
 .idea/
 
 tmp/
+dist/
+node_modules/
