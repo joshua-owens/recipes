@@ -33,6 +33,7 @@ func main() {
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Static("/dist", "dist")
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(200, "index.html", Page{Title: "Hello, Chef"})
