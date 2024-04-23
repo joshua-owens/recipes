@@ -6,5 +6,5 @@ COPY cmd/scraper/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY cmd/scraper/ ./
-
+ENV PYTHONPATH=/app
 CMD ["python", "index.py"]

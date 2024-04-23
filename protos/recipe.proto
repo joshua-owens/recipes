@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service RecipeService {
+    rpc GetRecipe (RecipeRequest) returns (RecipeResponse);
+}
+
+message RecipeRequest {
+    string url = 1;
+}
+
+message RecipeResponse {
+    string title = 1;
+    string ingredients = 2;
+    string instructions = 3;
+}
