@@ -3,9 +3,19 @@ package main
 import (
 	"html/template"
 	"io"
+	"log"
+	"net/http"
+
+	pb "recipes.jowens.dev/internal/protos"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"google.golang.org/grpc"
+)
+
+const (
+	address    = "localhost:50051"
+	defaultURL = "https://www.budgetbytes.com/not-butter-chicken/"
 )
 
 type Templates struct {
@@ -27,6 +37,13 @@ type Page struct {
 }
 
 func main() {
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	c := pb.NewRecipeServiceClient(conn)
+
 	e := echo.New()
 
 	e.Renderer = newTemplate()
@@ -37,6 +54,14 @@ func main() {
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(200, "index.html", Page{Title: "Hello, Chef"})
+	})
+
+	e.GET("/recipe", func(context echo.Context) error {
+		r, err := c.GetRecipe(context.Request().Context(), &pb.RecipeRequest{Url: defaultURL})
+		if err != nil {
+			log.Fatalf("could not get recipe: %v", err)
+		}
+		return context.JSON(http.StatusOK, r)
 	})
 
 	e.Logger.Fatal(e.Start(":8080"))
