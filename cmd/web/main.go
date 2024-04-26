@@ -6,15 +6,16 @@ import (
 	"log"
 	"net/http"
 
-	pb "recipes.jowens.dev/internal/protos"
+	"recipes.jowens.dev/internal/protos"
 
 	"github.com/labstack/echo/v4"
+
 	"github.com/labstack/echo/v4/middleware"
 	"google.golang.org/grpc"
 )
 
 const (
-	address    = "localhost:50051"
+	address    = "scraper:50051"
 	defaultURL = "https://www.budgetbytes.com/not-butter-chicken/"
 )
 
@@ -37,12 +38,14 @@ type Page struct {
 }
 
 func main() {
+	log.Println("Starting server...")
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	log.Println("connection established...")
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewRecipeServiceClient(conn)
+	c := protos.NewRecipeServiceClient(conn)
 
 	e := echo.New()
 
@@ -57,7 +60,7 @@ func main() {
 	})
 
 	e.GET("/recipe", func(context echo.Context) error {
-		r, err := c.GetRecipe(context.Request().Context(), &pb.RecipeRequest{Url: defaultURL})
+		r, err := c.GetRecipe(context.Request().Context(), &protos.RecipeRequest{Url: defaultURL})
 		if err != nil {
 			log.Fatalf("could not get recipe: %v", err)
 		}
