@@ -1,5 +1,5 @@
 extruct===0.16.0
-grpcio==1.62.2
-grpcio-tools==1.62.2
+grpcio>=1.62.2
+grpcio-tools>=1.62.2
 lxml===5.1.0
 recipe-scrapers===14.55.0
