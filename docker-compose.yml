@@ -1,0 +1,46 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api:/var/www/html
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client 
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src/app
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:9
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: recipes  
+      MYSQL_DATABASE: recipes 
+      MYSQL_USER: recipes  
+      MYSQL_PASSWORD: recipes 
+    ports:
+      - "3306:3306"
+    volumes:
+      - recipes-db:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  recipes-db:

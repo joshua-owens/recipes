@@ -25,7 +25,7 @@ php artisan breeze:install api
 php artisan migrate
 ```
 
-Next, ensure that your application's `APP_URL` and `FRONTEND_URL` environment variables are set to `http://localhost:8000` and `http://localhost:3000`, respectively.
+Next, ensure that your application's `APP_URL` and `FRONTEND_URL` environment variables are set to `http://localhost:8080` and `http://localhost:3000`, respectively.
 
 After defining the appropriate environment variables, you may serve the Laravel application using the `serve` Artisan command:
 
@@ -37,7 +37,7 @@ php artisan serve
 Next, clone this repository and install its dependencies with `yarn install` or `npm install`. Then, copy the `.env.example` file to `.env.local` and supply the URL of your backend:
 
 ```
-NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8080
 ```
 
 Finally, run the application via `npm run dev`. The application will be available at `http://localhost:3000`:
