@@ -1,8 +1,12 @@
 default:
     @echo "Available commands:"
+    @echo "  artisan *args:  Run Laravel Artisan commands inside the api service container"
     @echo "  setup:          Set up environment files and start Docker containers"
     @echo "  shell service:  docker compose exec service sh"
     @echo "  up:             docker compose up -d"
+
+artisan *args:
+    docker compose exec api php artisan {{args}} 
 
 setup:
     @echo "Setting up environment files..."
