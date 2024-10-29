@@ -2,11 +2,18 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Recipes\RecipeScraper;
+use App\Recipes\Scraper;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
+    public $bindings = [
+        Scraper::class => RecipeScraper::class,
+    ];
+    
     /**
      * Register any application services.
      */

@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'scaper_url' => env('SCRAPER_URL', 'http://scraper:4000'),
+
 ];
