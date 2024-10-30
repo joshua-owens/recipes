@@ -2,7 +2,7 @@ default:
     @echo "Available commands:"
     @echo "  artisan *args:  Run Laravel Artisan commands inside the api service container"
     @echo "  setup:          Set up environment files and start Docker containers"
-    @echo "  shell service:  docker compose exec service sh"
+    @echo "  shell service:  docker compose exec service bash"
     @echo "  up:             docker compose up -d"
     @echo "  down:           docker compose down"
 
@@ -34,7 +34,7 @@ setup:
     echo "Migrations have been run."
 
 shell service:
-    docker compose exec {{service}} sh
+    docker compose exec {{service}} bash
 
 up:
     docker compose up -d
