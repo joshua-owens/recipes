@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->string('url')->unique()->index();
             $table->string('image');
             $table->json('ingredients');
             $table->json('instructions');

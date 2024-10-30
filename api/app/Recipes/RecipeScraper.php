@@ -14,7 +14,10 @@ class RecipeScraper implements Scraper
         ]);
 
         if ($response->successful()) {
-            return new Recipe($response->json());
+            return new Recipe([
+                'url' => $url,
+                ...$response->json()
+            ]);
         }
 
         throw new \Exception('Failed to scrape the recipe.');
