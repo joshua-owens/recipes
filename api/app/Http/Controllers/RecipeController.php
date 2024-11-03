@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-
     public function store(Request $request)
     {
         $request->validate([
-            'url' => 'required|url'
+            'url' => 'required|url',
         ]);
 
         if (Recipe::where('url', $request->url)->exists()) {

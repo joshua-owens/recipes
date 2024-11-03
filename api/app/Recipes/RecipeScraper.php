@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class RecipeScraper implements Scraper
 {
-    public function scrape(string $url): Recipe 
+    public function scrape(string $url): Recipe
     {
         $response = Http::post('http://scraper:4000/recipe', [
-            'url' => $url
+            'url' => $url,
         ]);
 
         if ($response->successful()) {
             return new Recipe([
                 'url' => $url,
-                ...$response->json()
+                ...$response->json(),
             ]);
         }
 

@@ -2,12 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Recipes\Scraper;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Queue;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
+use Tests\TestCase;
 
 class RecipeTest extends TestCase
 {

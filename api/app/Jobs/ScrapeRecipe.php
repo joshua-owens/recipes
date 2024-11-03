@@ -10,7 +10,6 @@ class ScrapeRecipe implements ShouldQueue
 {
     use Queueable;
 
-
     /**
      * Create a new job instance.
      */
@@ -25,8 +24,8 @@ class ScrapeRecipe implements ShouldQueue
     {
         $recipe = $scraper->scrape($this->url);
 
-        if (!$recipe->save()) {
+        if (! $recipe->save()) {
             $this->fail();
-        } 
+        }
     }
 }
