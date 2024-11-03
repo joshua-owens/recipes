@@ -5,6 +5,7 @@ default:
     @echo "  shell service:  docker compose exec service bash"
     @echo "  up:             docker compose up -d"
     @echo "  down:           docker compose down"
+    @echo "  format:         Run formatters acrosss all services"
 
 artisan *args:
     docker compose exec api php artisan {{args}} 
@@ -41,3 +42,7 @@ up:
 
 down:
     docker compose down
+
+format:
+    docker compose exec api composer format
+    docker compose exec client npm run format

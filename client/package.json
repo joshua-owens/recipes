@@ -7,7 +7,7 @@
     "build": "node_modules/.bin/next build",
     "start": "node_modules/.bin/next start",
     "lint": "node_modules/.bin/next lint",
-    "lint:fix": "node_modules/.bin/next lint --fix"
+    "format": "node_modules/.bin/next lint --fix"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.2",
