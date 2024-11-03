@@ -46,3 +46,4 @@ down:
 format:
     docker compose exec api composer format
     docker compose exec client npm run format
+    docker compose exec scraper black .

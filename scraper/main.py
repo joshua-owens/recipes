@@ -7,8 +7,10 @@ from recipe_scrapers import scrape_html
 
 app = FastAPI()
 
+
 class RecipeRequest(BaseModel):
     url: str
+
 
 @app.post("/recipe")
 def create_recipe(request: RecipeRequest):
