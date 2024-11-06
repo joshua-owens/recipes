@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * @property string $url
@@ -20,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'url',
@@ -37,4 +39,17 @@ class Recipe extends Model
         'instructions' => 'array',
         'nutrients' => 'array',
     ];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray()
+    {
+        return array_merge($this->toArray(),[
+            'id' => (string) $this->id,
+            'created_at' => $this->created_at->timestamp,
+        ]);    
+    }
 }

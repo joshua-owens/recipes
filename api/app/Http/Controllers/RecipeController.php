@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'q' => 'required|string',
+        ]); 
+
+        $recipes = Recipe::search($request->q)->get();
+
+        return response()->json($recipes);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
